@@ -1,15 +1,17 @@
+# Lambda function definition
 resource "aws_lambda_function" "hello_world2" {
-  function_name = "hello-world2"
+  function_name = var.lambda_function_name
 
   package_type = "Image"
-  image_uri    = "677276078111.dkr.ecr.us-east-1.amazonaws.com/hello-world2:latest"
+  image_uri    = var.lambda_image_uri
 
   role = aws_iam_role.lambda_exec.arn
 }
 
+# CloudWatch Log Group for the Lambda function
 resource "aws_cloudwatch_log_group" "hello_world2" {
-  name = "/aws/lambda/${aws_lambda_function.hello_world2.function_name}-v2"  # New log group name with a suffix
-
-  retention_in_days = 30
+  name              = "/aws/lambda/${aws_lambda_function.hello_world2.function_name}-v2"
+  retention_in_days = var.log_group_retention_days
 }
+
 
