@@ -89,6 +89,7 @@ jobs:
       # Step: Run Checkov Security Scan
       - name: Run Checkov
         run: |
+          git checkout master
           cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
           checkov --directory . --skip-check CKV_AWS_*,CKV2_AWS_*
 
