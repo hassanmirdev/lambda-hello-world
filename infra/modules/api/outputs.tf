@@ -1,5 +1,3 @@
-# Define outputs to expose resources created by the Terraform configuration
-
 output "api_gateway_id" {
   description = "The ID of the API Gateway."
   value       = aws_apigatewayv2_api.lambda.id
