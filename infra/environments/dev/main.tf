@@ -31,4 +31,6 @@ module "api_gateway" {
   lambda_invoke_arn = module.lambda_function.lambda_function_arn
   lambda_function_name = module.lambda_function.lambda_function_name
   log_group_name  = "/aws/api_gw/hello-world2"
+  retention_days  = 30
+  stage_name      = "prod"
 }
