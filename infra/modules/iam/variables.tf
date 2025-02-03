@@ -1,13 +1,9 @@
-# Variables file for defining configurable parameters
-
-# IAM role name for Lambda execution
 variable "lambda_role_name" {
   description = "The name of the IAM role for Lambda execution."
   type        = string
   default     = "serverless_lambda"
 }
 
-# The ARN of the IAM policy to attach to the Lambda execution role
 variable "lambda_policy_arn" {
   description = "The ARN of the IAM policy to attach to the Lambda execution role."
   type        = string
