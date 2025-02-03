@@ -21,7 +21,8 @@ module "lambda_function" {
   source = "../../lambda"  # Path to the Lambda module
 
   lambda_function_name = "hello-world2"
-  lambda_image_uri     = "${module.ecr_repository.ecr_repository_uri}:latest"  # Using ECR URI for the Lambda image
+  lambda_image_uri  "677276078111.dkr.ecr.us-east-1.amazonaws.com/hello-world2:latest"
+ # lambda_image_uri     = "${module.ecr_repository.ecr_repository_uri}:latest"  # Using ECR URI for the Lambda image
   lambda_role_arn      = module.iam_lambda.lambda_role_arn
 }
 
