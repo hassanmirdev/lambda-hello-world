@@ -1,4 +1,3 @@
-# IAM Role for Lambda execution
 resource "aws_iam_role" "lambda_exec" {
   name = var.lambda_role_name
 
@@ -15,8 +14,17 @@ resource "aws_iam_role" "lambda_exec" {
   })
 }
 
-# Attach the AWSLambdaBasicExecutionRole policy to the Lambda IAM role
 resource "aws_iam_role_policy_attachment" "lambda_policy" {
   role       = aws_iam_role.lambda_exec.name
   policy_arn = var.lambda_policy_arn
+}
+
+output "lambda_role_arn" {
+  description = "The ARN of the Lambda execution IAM role."
+  value       = aws_iam_role.lambda_exec.arn
+}
+
+output "lambda_role_name" {
+  description = "The name of the Lambda execution IAM role."
+  value       = aws_iam_role.lambda_exec.name
 }
