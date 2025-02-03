@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-east-1"  # Specify your AWS region
-}
-
 # Call the IAM module for creating Lambda execution role
 module "iam_lambda" {
   source            = "../../modules/iam"
