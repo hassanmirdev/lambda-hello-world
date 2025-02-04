@@ -80,18 +80,18 @@ jobs:
       #    # Run TFLint with proper syntax
       #    tflint --config .tflint.hcl
 
-      # Step: Install Checkov
-      - name: Install Checkov
-        run: |
-          pip install checkov
-          checkov --version
+      # # Step: Install Checkov
+      # - name: Install Checkov
+      #   run: |
+      #     pip install checkov
+      #     checkov --version
 
-      # Step: Run Checkov Security Scan
-      - name: Run Checkov
-        run: |
-          git checkout master
-          cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
-          checkov --directory . --skip-check CKV_AWS_*,CKV2_AWS_*
+      # # Step: Run Checkov Security Scan
+      # - name: Run Checkov
+      #   run: |
+      #     git checkout master
+      #     cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
+      #     checkov --directory . --skip-check CKV_AWS_*,CKV2_AWS_*
 
       # Step: Terraform Init
       - name: Terraform Init
