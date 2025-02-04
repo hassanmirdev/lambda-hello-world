@@ -28,7 +28,7 @@ resource "aws_apigatewayv2_stage" "lambda" {
 }
 
 # Integration of Lambda function with API Gateway
-resource "aws_apigatewayv2_integration" "hello_world" {
+resource "aws_apigatewayv2_integration" "hello_world3" {
   api_id             = aws_apigatewayv2_api.lambda.id
   integration_uri    = var.lambda_invoke_arn
   integration_type   = "AWS_PROXY"
@@ -36,10 +36,10 @@ resource "aws_apigatewayv2_integration" "hello_world" {
 }
 
 # Route to trigger Lambda
-resource "aws_apigatewayv2_route" "hello_world" {
+resource "aws_apigatewayv2_route" "hello_world3" {
   api_id   = aws_apigatewayv2_api.lambda.id
   route_key = var.route_key
-  target   = "integrations/${aws_apigatewayv2_integration.hello_world.id}"
+  target   = "integrations/${aws_apigatewayv2_integration.hello_world3.id}"
 }
 
 # CloudWatch Log Group for API Gateway
@@ -52,7 +52,7 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 resource "aws_lambda_permission" "api_gw" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = var.lambda_function_name
+  function_name = "hello-world3"  # Update Lambda function name here
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
 }
