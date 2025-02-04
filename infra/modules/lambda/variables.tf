@@ -7,7 +7,7 @@ variable "lambda_function_name" {
 variable "lambda_image_uri" {
   description = "The URI of the Lambda function's image stored in Amazon ECR."
   type        = string
-  default     = "677276078111.dkr.ecr.us-east-1.amazonaws.com/app-pat-repo:latest"
+  default     = "677276078111.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest"
 }
 
 variable "log_group_retention_days" {
