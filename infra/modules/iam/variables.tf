@@ -10,7 +10,3 @@ variable "lambda_policy_arn" {
   default     = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
-variable "lambda_role_name" {
-  description = "Name of the Lambda execution role"
-  type        = string
-}
