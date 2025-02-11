@@ -9,3 +9,8 @@ variable "lambda_policy_arn" {
   type        = string
   default     = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
+variable "api_name" {
+
+}
+variable "log_group_name" {}
+variable "retention_days" {}
