@@ -9,9 +9,6 @@ variable "lambda_policy_arn" {
   type        = string
   default     = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
-variable "api_name" {
-
-}
 
 variable "retention_days" {
   description = "Retention period in days for CloudWatch logs"
