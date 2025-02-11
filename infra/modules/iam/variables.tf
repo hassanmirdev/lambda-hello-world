@@ -12,5 +12,21 @@ variable "lambda_policy_arn" {
 variable "api_name" {
 
 }
-variable "log_group_name" {}
-variable "retention_days" {}
+
+variable "retention_days" {
+  description = "Retention period in days for CloudWatch logs"
+  type        = number
+  default     = 30  # Adjust this value based on your preference
+}
+
+variable "api_name" {
+  description = "The name of the API Gateway"
+  type        = string
+  default     = "my-api"  # Set a default name or pass it dynamically
+}
+
+variable "log_group_name" {
+  description = "The name of the CloudWatch Log Group"
+  type        = string
+  default     = "api-gateway-log-group"  # Set a default log group name or pass dynamically
+}
