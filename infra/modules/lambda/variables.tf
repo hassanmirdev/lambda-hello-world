@@ -1,7 +1,7 @@
 variable "lambda_function_name" {
   description = "The name of the Lambda function.."
   type        = string
-  default     = "hello-world2"
+  default     = "hello-world-LF"
 }
 
 variable "lambda_image_uri" {
