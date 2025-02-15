@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-name: Provision EKS infra through terraform.
+name: Deploy app to lambda Function.
 run-name: infra prov
 on:
-  workflow_dispatch:
+ workflow_dispatch:
     inputs:
       environment:
         description: "Choose Environments to Deploy"
@@ -14,30 +13,6 @@ on:
         - staging
         - prod
 
-  push:
-    branches:
-       - main
-       - master
-  pull_request:
-     branches:
-       - main
-       - master
-=======
-name: Deploy app to lambda Function.
-run-name: infra prov
-on:
- workflow_dispatch:
-  #   inputs:
-  #     environment:
-  #       description: "Choose Environments to Deploy"
-  #       required: true
-  #       default: "dev"
-  #       type: choice
-  #       options:
-  #       - dev
-  #       - staging
-  #       - prod
-
   # push:
   #   branches:
   #      - main
@@ -46,7 +21,6 @@ on:
   #    branches:
   #      - main
   #      - master
->>>>>>> master
 permissions:
   contents: read
   pull-requests: write      
@@ -69,57 +43,43 @@ jobs:
         with:
           terraform_version: 1.5.5
 
-      # - name: Install TFLint
-      #   run: |
-      #     TFLINT_VERSION="v0.55.0"
-      #     curl -sL "https://github.com/terraform-linters/tflint/releases/download/${TFLINT_VERSION}/tflint_linux_amd64.zip" -o tflint.zip
+      - name: Install TFLint
+        run: |
+          TFLINT_VERSION="v0.55.0"
+          curl -sL "https://github.com/terraform-linters/tflint/releases/download/${TFLINT_VERSION}/tflint_linux_amd64.zip" -o tflint.zip
           
-      #     if [ ! -s "tflint.zip" ]; then
-      #       echo "Error: Downloaded TFLint archive is empty or invalid."
-      #       exit 1
-      #     fi
+          if [ ! -s "tflint.zip" ]; then
+            echo "Error: Downloaded TFLint archive is empty or invalid."
+            exit 1
+          fi
 
-      #     unzip tflint.zip
-      #     chmod +x tflint
-      #     sudo mv tflint /usr/local/bin/
-      #     rm tflint.zip
+          unzip tflint.zip
+          chmod +x tflint
+          sudo mv tflint /usr/local/bin/
+          rm tflint.zip
           
-      #     echo "TFLint installed successfully:"
-      #     tflint --version
+          echo "TFLint installed successfully:"
+          tflint --version
 
-      # - name: Run TFLint
-      #   run: |
-      #    cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
+      - name: Run TFLint
+        run: |
+         cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
 
-      #    # Ensure .tflint.hcl exists
-      #    if [ ! -f ".tflint.hcl" ]; then
-      #       cat <<EOF > .tflint.hcl
-      #       plugin "terraform" {
-      #       enabled = true
-      #      }
-      #    EOF
-      #    fi
+         # Ensure .tflint.hcl exists
+         if [ ! -f ".tflint.hcl" ]; then
+            cat <<EOF > .tflint.hcl
+            plugin "terraform" {
+            enabled = true
+           }
+         EOF
+         fi
 
-      #    # Install TFLint plugin (Terraform)
-      #    tflint --init
+         # Install TFLint plugin (Terraform)
+         tflint --init
 
-      #    # Run TFLint with proper syntax
-      #    tflint --config .tflint.hcl
+         # Run TFLint with proper syntax
+         tflint --config .tflint.hcl
 
-<<<<<<< HEAD
-      # # Step: Install Checkov
-      # - name: Install Checkov
-      #   run: |
-      #     pip install checkov
-      #     checkov --version
-
-      # # Step: Run Checkov Security Scan
-      # - name: Run Checkov
-      #   run: |
-      #     git checkout master
-      #     cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
-      #     checkov --directory . --skip-check CKV_AWS_*,CKV2_AWS_*
-=======
       # Step: Install Checkov
       - name: Install Checkov
         run: |
@@ -131,7 +91,6 @@ jobs:
         run: |
           cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
           checkov --directory . --skip-check CKV_AWS_*,CKV2_AWS_*
->>>>>>> master
 
       # Step: Terraform Init
       - name: Terraform Init
