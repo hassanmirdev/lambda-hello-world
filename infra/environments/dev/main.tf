@@ -2,9 +2,9 @@
 # Call the IAM module for creating Lambda execution role.
 module "iam_lambda" {
   source = "../../modules/iam"  # Path to the IAM module
-  retention_days = var.retention_days
-  api_name       = var.api_name
-  log_group_name = var.log_group_name
+#  retention_days = var.retention_days
+#  api_name       = var.api_name
+#  log_group_name = var.log_group_name
 
   lambda_role_name = "serverless_lambda"  # You can customize this if needed
 }
