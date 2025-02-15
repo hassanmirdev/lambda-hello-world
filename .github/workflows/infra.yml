@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Provision EKS infra through terraform.
 run-name: infra prov
 on:
@@ -21,6 +22,31 @@ on:
      branches:
        - main
        - master
+=======
+name: Deploy app to lambda Function.
+run-name: infra prov
+on:
+ workflow_dispatch:
+  #   inputs:
+  #     environment:
+  #       description: "Choose Environments to Deploy"
+  #       required: true
+  #       default: "dev"
+  #       type: choice
+  #       options:
+  #       - dev
+  #       - staging
+  #       - prod
+
+  # push:
+  #   branches:
+  #      - main
+  #      - master
+  # pull_request:
+  #    branches:
+  #      - main
+  #      - master
+>>>>>>> master
 permissions:
   contents: read
   pull-requests: write      
@@ -80,6 +106,7 @@ jobs:
       #    # Run TFLint with proper syntax
       #    tflint --config .tflint.hcl
 
+<<<<<<< HEAD
       # # Step: Install Checkov
       # - name: Install Checkov
       #   run: |
@@ -92,6 +119,19 @@ jobs:
       #     git checkout master
       #     cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
       #     checkov --directory . --skip-check CKV_AWS_*,CKV2_AWS_*
+=======
+      # Step: Install Checkov
+      - name: Install Checkov
+        run: |
+          pip install checkov
+          checkov --version
+
+      # Step: Run Checkov Security Scan
+      - name: Run Checkov
+        run: |
+          cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
+          checkov --directory . --skip-check CKV_AWS_*,CKV2_AWS_*
+>>>>>>> master
 
       # Step: Terraform Init
       - name: Terraform Init
