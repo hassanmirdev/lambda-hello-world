@@ -52,7 +52,7 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 resource "aws_lambda_permission" "api_gw" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = "hello-world3"  # Update Lambda function name here
+  function_name = "hello_world3"  # Update Lambda function name here
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
 }
