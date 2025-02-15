@@ -1,4 +1,4 @@
-resource "aws_lambda_function" "hello_world2" {
+resource "aws_lambda_function" "hello_world3" {
   function_name = var.lambda_function_name
 
   package_type = "Image"
