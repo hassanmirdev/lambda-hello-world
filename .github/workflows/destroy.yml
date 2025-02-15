@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Manually trigger the workflow
    inputs:
     environment:
-        description: " Select Environment to deploy (e.g., dev, staging, prod)"
+        description: " Select Environment to Destroy (e.g., dev, staging, prod)"
         required: true
         default: "dev"
         type: choice
