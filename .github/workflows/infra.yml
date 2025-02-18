@@ -13,14 +13,14 @@ on:
         - staging
         - prod
 
-  # push:
-  #   branches:
-  #      - main
-  #      - master
-  # pull_request:
-  #    branches:
-  #      - main
-  #      - master
+  push:
+    branches:
+       - main
+       - master
+  pull_request:
+     branches:
+       - main
+       - master
 permissions:
   contents: read
   pull-requests: write      
@@ -110,39 +110,39 @@ jobs:
           cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
           terraform plan 
 
-      # # Step: Checkout Repository for PR
-      # - name: Checkout Repository
-      #   uses: actions/checkout@v3
-      #   with:
-      #     fetch-depth: 0
-      #     ref: ${{ github.event.pull_request.head.ref || github.ref }} 
-      #     token: ${{ secrets.PAT_TOKEN }}
+      # Step: Checkout Repository for PR
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref || github.ref }} 
+          token: ${{ secrets.PAT_TOKEN }}
 
-      # # Step: Configure Git for committing generated README.md
-      # - name: Configure Git
-      #   run: |
-      #     git config --global user.name 'github-actions[bot]'
-      #     git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+      # Step: Configure Git for committing generated README.md
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      # # Step: Generate Markdown with Terraform Docs
-      # - name: Generate Markdown with Terraform Docs
-      #   if: ${{ github.event_name == 'pull_request' }}
-      #   uses: terraform-docs/gh-actions@v1.3.0
-      #   with:
-      #     working-dir: ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
-      #     output-file: README.md
-      #     output-method: inject
-      #     git-push: true
-      #     config-file: .terraform-docs.yml
+      # Step: Generate Markdown with Terraform Docs
+      - name: Generate Markdown with Terraform Docs
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: terraform-docs/gh-actions@v1.3.0
+        with:
+          working-dir: ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
+          output-file: README.md
+          output-method: inject
+          git-push: true
+          config-file: .terraform-docs.yml
 
-      # # Add README.md to PR Comment using Sticky Comment
-      # - name: Post README.md as PR Comment
-      #   if: ${{ github.event_name == 'pull_request' }}
-      #   uses: marocchino/sticky-pull-request-comment@v2.9.0
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     header: "Terraform Documentation "
-      #     path: "./infra/environments/${{ github.event.inputs.environment || 'dev' }}/README.md"
+      # Add README.md to PR Comment using Sticky Comment
+      - name: Post README.md as PR Comment
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: marocchino/sticky-pull-request-comment@v2.9.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          header: "Terraform Documentation "
+          path: "./infra/environments/${{ github.event.inputs.environment || 'dev' }}/README.md"
     
       # Step: Apply Terraform if PR is merged
       - name: Apply Terraform on Merge the PR
