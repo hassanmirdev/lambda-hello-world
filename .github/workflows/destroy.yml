@@ -12,10 +12,7 @@ on:
         - dev
         - staging
         - prod
-  # push:
-  #   branches:
-  #    - main
-  #    - master
+
 jobs:
   destroy:
     name: Destroy Terraform Resources
