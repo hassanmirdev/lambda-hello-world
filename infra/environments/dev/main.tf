@@ -10,10 +10,10 @@ module "iam_lambda" {
 }
 
 # Call the ECR module for creating an ECR repository
-module "ecr_repository" {
-  source = "../../modules/ecr"  # Path to the ECR module
+# module "ecr_repository" {
+# source = "../../modules/ecr"  # Path to the ECR module
 
-  ecr_repository_name = "hello-world-repo"  # You can customize this if needed
+#  ecr_repository_name = "hello-world-repo"  # You can customize this if needed
 }
 
 # Call the Lambda module for creating a Lambda function
