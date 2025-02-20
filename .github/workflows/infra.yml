@@ -13,14 +13,14 @@ on:
         - staging
         - prod
 
- # push:
- #    branches:
- #       - main
- #       - master
- # pull_request:
- #     branches:
- #       - main
- #       - master
+ push:
+    branches:
+       - main
+       - master
+ pull_request:
+     branches:
+       - main
+       - master
 permissions:
   contents: read
   pull-requests: write      
