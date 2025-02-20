@@ -1,4 +1,4 @@
-name: Deploy app to lambda Function.
+name: Deploy app to lambda Function..
 run-name: infra prov
 on:
  workflow_dispatch:
