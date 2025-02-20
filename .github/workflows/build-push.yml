@@ -1,0 +1,37 @@
+# This workflow will checkout the sample app Hello World.js code, create Docker Image and push it to the Amazon ECR Registry.
+
+name: Build Docker Image and Push Docker Images to ECR
+run-name: Build & Push Image
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Set up Docker Buildx
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    # Log in to Amazon ECR
+    - name: Log in to Amazon ECR
+      uses: aws-actions/amazon-ecr-login@v1
+      env:
+         AWS_REGION: ${{ secrets.AWS_REGION }}
+         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  
+    - name: Build, Tag & Push Docker Image for Hello World app
+      run: |
+       cd ./app/
+       docker build -t hello-world-app:latest -f Dockerfile .
+       docker tag hello-world-app:latest 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:hello-world-app:latest
+       docker push 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:hello-world-app:latest
+
+
+  
