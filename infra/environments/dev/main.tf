@@ -36,4 +36,5 @@ module "api_gateway" {
   log_group_name  = "/aws/api_gw/hello-world2"
   retention_days  = 30
   stage_name      = "prod"
+  depends_on      = [module.lambda_function]
 }
