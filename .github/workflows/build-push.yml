@@ -30,8 +30,8 @@ jobs:
       run: |
        cd ./app/
        docker build -t hello-world-app:latest -f Dockerfile .
-       docker tag hello-world-app:latest 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:hello-world-app:latest
-       docker push 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:hello-world-app:latest
+       docker tag hello-world-app:latest 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:hello-world-app-latest
+       docker push 677276078111.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:hello-world-app-latest
 
 
   
