@@ -14,7 +14,7 @@ module "iam_lambda" {
 # source = "../../modules/ecr"  # Path to the ECR module
 
 #  ecr_repository_name = "hello-world-repo"  # You can customize this if needed
-}
+# }
 
 # Call the Lambda module for creating a Lambda function
 module "lambda_function" {
