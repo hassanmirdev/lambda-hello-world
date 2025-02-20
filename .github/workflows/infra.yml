@@ -13,14 +13,14 @@ on:
         - staging
         - prod
 
- push:
-    branches:
-       - main
-       - master
- pull_request:
-     branches:
-       - main
-       - master
+ # push:
+ #    branches:
+ #       - main
+ #       - master
+ # pull_request:
+ #     branches:
+ #       - main
+ #       - master
 permissions:
   contents: read
   pull-requests: write      
@@ -146,7 +146,7 @@ jobs:
     
       # Step: Apply Terraform if PR is merged
       - name: Apply Terraform on Merge the PR
-        # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
           cd ./infra/environments/${{ github.event.inputs.environment || 'dev' }}
           terraform init
