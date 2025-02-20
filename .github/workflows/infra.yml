@@ -1,4 +1,4 @@
-name: Deploy app to lambda Function.
+name: Deploy app to lambda Function..
 run-name: infra prov
 on:
  workflow_dispatch:
@@ -13,11 +13,11 @@ on:
         - staging
         - prod
 
-  push:
+ push:
     branches:
        - main
        - master
-  pull_request:
+ pull_request:
      branches:
        - main
        - master
