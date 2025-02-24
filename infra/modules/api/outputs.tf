@@ -5,9 +5,7 @@ output "api_gateway_id" {
 
 output "api_gateway_url" {
   description = "The URL of the deployed API Gateway."
-  # value       = aws_apigatewayv2_api.lambda.api_endpoint
-  value = "${aws_apigatewayv2_api.lambda.api_endpoint}/${aws_apigatewayv2_stage.lambda.name}${aws_apigatewayv2_route.hello_world3.route_key}"
-
+  value       = aws_apigatewayv2_api.lambda.api_endpoint
 }
 
 output "stage_name" {
