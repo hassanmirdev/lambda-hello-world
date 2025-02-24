@@ -1,4 +1,4 @@
-name: Deploy app to lambda Function with API Gateway..
+name: Deploy app to lambda Function with API Gateway.
 run-name: infra prov
 on:
  workflow_dispatch:
