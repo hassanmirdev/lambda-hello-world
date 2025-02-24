@@ -29,9 +29,9 @@ jobs:
   terraform:
     name: Terraform-infra
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    # env:
+    #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     steps:
       - name: Checkout Code
@@ -42,6 +42,14 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.5
+      # Step: Set up AWS credentials via OIDC
+      - name: Set up AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::677276078111:role/GithubActions-lambda-api-sso 
+          role-session-name: github-actions-session
+          aws-region: us-east-1
+          audience: sts.amazonaws.com
 
       - name: Install TFLint
         run: |
